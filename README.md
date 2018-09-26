@@ -14,41 +14,42 @@ There isn't any Swarm or Kubernetes manifest in this repository, you'll need to 
 
 To build the frontend you first need to edit the `.env.prod` file. Then you can build the project by running `yarn build`.
 
-Environment variables (at build time):
+_Environment variables (at build time):_
 
-VUE_APP_JOB_API: The Jobs-API url
-VUE_APP_IMAGES_API: The Images-API url
+- VUE_APP_JOB_API: The Jobs-API url
+- VUE_APP_IMAGES_API: The Images-API url
 
 ### Jobs-API:
 
 The jobs-API is a REST API providing image upload endpoint to create a resize job.
 When you send an image on `/upload` its uploaded to minio and a job is sent to nats.io
 
-Environment variables:
+_Environment variables:_
 
-API_PORT: The port to listen
-STORAGE_BUCKETNAME: The bucket's name to use and to create in minio
-STORAGE_SERVER: The minio's access url
-STORAGE_PORT: The minio's access port
-STORAGE_ACCESSKEY: The minio's access key
-STORAGE_SECRETKEY: The minio's secret key
-STORAGE_SSL: Define if minio is using SSL
-NATS_CONNECTIONSTRINGS: Nats.io connection url
-NATS_QUEUE: The name of the queue
+- API_PORT: The port to listen
+- STORAGE_BUCKETNAME: The bucket's name to use and to create in minio
+- STORAGE_SERVER: The minio's access url
+- STORAGE_PORT: The minio's access port
+- STORAGE_ACCESSKEY: The minio's access key
+- STORAGE_SECRETKEY: The minio's secret key
+- STORAGE_SSL: Define if minio is using SSL
+- NATS_CONNECTIONSTRINGS: Nats.io connection url
+- NATS_QUEUE: The name of the queue
 
 ### Worker:
 
 The worker gets resize jobs from nats.io, resize the image, saves it to minio and store metadata on postgres.
-Environment variables:
 
-NATS_SERVERS: The connection stringS to connect to nats.io
-NATS_QUEUE: The name of the queue
-POSTGRES_CONNECTION_STRING: Postgres connection url
-STORAGE_SERVER: The minio's access url (with port)
-STORAGE_BUCKETNAME: The bucket's name to use and to create in minio
-STORAGE_ACCESSKEY: The minio's access key
-STORAGE_SECRETKEY: The minio's secret key
-STORAGE_SSL: Define if minio is using SSL
+_Environment variables:_
+
+- NATS_SERVERS: The connection stringS to connect to nats.io
+- NATS_QUEUE: The name of the queue
+- POSTGRES_CONNECTION_STRING: Postgres connection url
+- STORAGE_SERVER: The minio's access url (with port)
+- STORAGE_BUCKETNAME: The bucket's name to use and to create in minio
+- STORAGE_ACCESSKEY: The minio's access key
+- STORAGE_SECRETKEY: The minio's secret key
+- STORAGE_SSL: Define if minio is using SSL
 
 ### Images-API:
 
