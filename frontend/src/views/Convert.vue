@@ -60,7 +60,7 @@ export default {
       data.append('width', this.form.width);
       data.append('file', this.form.file);
       data.append('height', this.form.height);
-      JobService.create(data).then(res => {
+      JobService.create(data).then(() => {
         this.loading = false;
         this.$notify({
           group: 'all',

@@ -30,7 +30,14 @@
       "plugin:vue/essential",
       "@vue/prettier"
     ],
-    "rules": {},
+    "rules": {
+      "prettier/prettier": [
+        "warn",
+        {
+          "singleQuote": true
+        }
+      ]
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }

@@ -19,6 +19,10 @@ _Environment variables (at build time):_
 - VUE_APP_JOB_API: The Jobs-API url
 - VUE_APP_IMAGES_API: The Images-API url
 
+Docker image: alexandrevilain/image-resizer-frontend
+
+This image needs to be rebuild with working env variables
+
 ### Jobs-API:
 
 The jobs-API is a REST API providing image upload endpoint to create a resize job.
@@ -36,6 +40,8 @@ _Environment variables:_
 - NATS_CONNECTIONSTRINGS: Nats.io connection url
 - NATS_QUEUE: The name of the queue
 
+Docker image: alexandrevilain/image-resizer-jobs-api
+
 ### Worker:
 
 The worker gets resize jobs from nats.io, resize the image, saves it to minio and store metadata on postgres.
@@ -50,6 +56,8 @@ _Environment variables:_
 - STORAGE_ACCESSKEY: The minio's access key
 - STORAGE_SECRETKEY: The minio's secret key
 - STORAGE_SSL: Define if minio is using SSL
+
+Docker image: alexandrevilain/image-resizer-worker
 
 ### Images-API:
 
