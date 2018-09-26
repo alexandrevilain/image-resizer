@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+deploy:
+  provider: script
+  script: bash ./build/docker-build-and-push.sh
+  on:
+    branch: master
