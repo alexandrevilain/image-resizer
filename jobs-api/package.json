@@ -1,0 +1,18 @@
+{
+  "name": "images-api",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "dependencies": {
+    "common-env": "^6.1.0",
+    "hapi": "^17.5.5",
+    "hapi-log-requests": "^1.0.3",
+    "inert": "^5.1.0",
+    "joi": "^13.6.0",
+    "lodash": "^4.17.10",
+    "minio": "^7.0.1",
+    "nats": "^1.0.1",
+    "uuid": "^3.3.2",
+    "vision": "^5.4.0"
+  }
+}
