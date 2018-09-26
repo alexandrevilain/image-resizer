@@ -3,6 +3,10 @@ sudo: required
 services:
   - docker
 
+install: true
+
+script: echo 'No script'
+
 deploy:
   provider: script
   script: bash ./build/docker-build-and-push.sh
