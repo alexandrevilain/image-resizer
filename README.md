@@ -90,3 +90,15 @@ docker run --name minio \
   -v /tmp/minio:/data \
   minio/minio server /data
 ```
+
+To start image-api using docker:
+
+```bash
+docker run --rm --net=host -p 3000:3000 \
+  -e PGRST_DB_URI="postgres://supinfo:supinfo@localhost:5432/images" \
+  -e PGRST_DB_ANON_ROLE="web_anon" \
+  -e PGRST_DB_SCHEMA="api" \
+  postgrest/postgrest
+```
+
+Or you can use the file `images-api/postgrest.conf`.
