@@ -2,7 +2,7 @@ create extension if not exists "uuid-ossp";
 create schema api;
 
 create role web_anon nologin;
-grant web_anon to postgres;
+grant web_anon to supinfo;
 
 create table api.images (
   "id" uuid primary key not null default uuid_generate_v4(),
