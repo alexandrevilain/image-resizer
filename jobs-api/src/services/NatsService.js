@@ -2,7 +2,7 @@
 
 const nats = require('nats');
 const { connectionStrings, queue } = config.nats;
-const connection = nats.connect({ servers: connectionStrings });
+const connection = nats.connect({ servers: connectionStrings.split(',') });
 
 module.exports = () => {
   return {
