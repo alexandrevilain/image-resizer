@@ -12,4 +12,4 @@ RUN CGO_ENABLED=0 GOOS=linux go build ./cmd/worker
 FROM alpine
 WORKDIR /root
 COPY --from=0 /go/src/github.com/alexandrevilain/image-resizer/worker/worker .
-CMD ["./app"]
+CMD ["./worker"]
