@@ -52,6 +52,7 @@ _Environment variables:_
 - NATS_QUEUE: The name of the queue
 - POSTGRES_CONNECTION_STRING: Postgres connection url
 - STORAGE_SERVER: The minio's access url (with port)
+- STORAGE_PUBLIC_ENDPOINT: The minio's public url (For k8s, this is the ingress). Don't put the scheme at the beginning. It uses the STORAGE_SSL env var to know if it's https or http.
 - STORAGE_BUCKETNAME: The bucket's name to use and to create in minio
 - STORAGE_ACCESSKEY: The minio's access key
 - STORAGE_SECRETKEY: The minio's secret key
@@ -96,17 +97,17 @@ docker run --name minio \
   -e MINIO_SECRET_KEY=supinfo1234 \
   -p 9000:9000 \
   -v /tmp/minio:/data \
-  minio/minio server /data
+  -d minio/minio server /data
 ```
 
 To start image-api using docker:
 
 ```bash
-docker run --rm --net=host -p 3000:3000 \
-  -e PGRST_DB_URI="postgres://supinfo:supinfo@localhost:5432/images" \
+docker run --rm --link images:db -p 3000:3000 \
+  -e PGRST_DB_URI="postgres://supinfo:supinfo@db:5432/images" \
   -e PGRST_DB_ANON_ROLE="web_anon" \
   -e PGRST_DB_SCHEMA="api" \
-  postgrest/postgrest
+  -d postgrest/postgrest
 ```
 
 Or you can use the file `images-api/postgrest.conf`.

@@ -8,22 +8,24 @@ import (
 )
 
 type StorageClient struct {
-	client   *minio.Client
-	endpoint string
-	bucket   string
-	ssl      bool
+	client         *minio.Client
+	endpoint       string
+	publicEndpoint string
+	bucket         string
+	ssl            bool
 }
 
-func NewClient(endpoint, bucket, accessKeyID, secretAccessKey string, useSSL bool) (*StorageClient, error) {
+func NewClient(endpoint, publicEndpoint, bucket, accessKeyID, secretAccessKey string, useSSL bool) (*StorageClient, error) {
 	minioClient, err := minio.New(endpoint, accessKeyID, secretAccessKey, useSSL)
 	if err != nil {
 		return nil, err
 	}
 	return &StorageClient{
-		client:   minioClient,
-		endpoint: endpoint,
-		bucket:   bucket,
-		ssl:      useSSL,
+		client:         minioClient,
+		endpoint:       endpoint,
+		publicEndpoint: publicEndpoint,
+		bucket:         bucket,
+		ssl:            useSSL,
 	}, nil
 }
 
@@ -32,7 +34,7 @@ func (c *StorageClient) getPublicUrl(objectName string) string {
 	if c.ssl {
 		protocol = "https"
 	}
-	return fmt.Sprintf("%s://%s/%s/%s", protocol, c.endpoint, c.bucket, objectName)
+	return fmt.Sprintf("%s://%s/%s/%s", protocol, c.publicEndpoint, c.bucket, objectName)
 }
 
 func (c *StorageClient) UploadFile(path string) (string, error) {

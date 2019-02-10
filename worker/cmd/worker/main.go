@@ -20,7 +20,7 @@ func main() {
 	}
 
 	jobs := make(chan []byte)
-	storage, err := storage.NewClient(config.StorageServer, config.StorageBucket, config.StorageAccessKeyID, config.StorageSecretAccessKey, config.StorageSSL)
+	storage, err := storage.NewClient(config.StorageServer, config.StorageServerPublicEndpoint, config.StorageBucket, config.StorageAccessKeyID, config.StorageSecretAccessKey, config.StorageSSL)
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
